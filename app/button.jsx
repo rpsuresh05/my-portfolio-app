@@ -1,16 +1,17 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 // import { FiLock } from "react-icons/fi";
 import { motion } from "framer-motion";
 
 const Example = () => {
   return (
-    <div className="grid min-h-[200px] place-content-center bg-neutral-900 p-4">
-      <EncryptButton />
-    </div>
+    <EncryptButton />
+    // <div className="grid min-h-[200px] place-content-center bg-neutral-900 p-4">
+
+    // </div>
   );
 };
 
-const TARGET_TEXT = "Suresh Paranthaman";
+const TARGET_TEXT = "Suresh R Paranthaman";
 const CYCLES_PER_LETTER = 2;
 const SHUFFLE_TIME = 50;
 
@@ -21,10 +22,9 @@ const EncryptButton = () => {
 
   const [text, setText] = useState(TARGET_TEXT);
 
-  const scramble = () => {
+  useEffect(() => {
     let pos = 0;
-
-    intervalRef.current = setInterval(() => {
+    let newInterval = setInterval(() => {
       const scrambled = TARGET_TEXT.split("")
         .map((char, index) => {
           if (pos / CYCLES_PER_LETTER > index) {
@@ -40,8 +40,51 @@ const EncryptButton = () => {
 
       setText(scrambled);
       pos++;
+      console.log("scrambled---", scrambled, pos);
+      if (pos >= TARGET_TEXT.length * CYCLES_PER_LETTER) {
+        console.log(
+          "stop---",
+          scrambled,
+          pos,
+          TARGET_TEXT.length * CYCLES_PER_LETTER
+        );
+        clearInterval(newInterval);
+      }
+    }, 100);
+  }, []);
+
+  const scramble = () => {
+    // alert("HI..");
+    console.log("Testing..");
+    let pos = 0;
+
+    intervalRef.current = setInterval(() => {
+      console.log("Testing.1.");
+      const scrambled = TARGET_TEXT.split("")
+        .map((char, index) => {
+          console.log("Testing..2");
+          if (pos / CYCLES_PER_LETTER > index) {
+            return char;
+          }
+
+          const randomCharIndex = Math.floor(Math.random() * CHARS.length);
+          const randomChar = CHARS[randomCharIndex];
+
+          return randomChar;
+        })
+        .join("");
+      console.log("scrambled", scrambled, pos);
+
+      setText(scrambled);
+      pos++;
 
       if (pos >= TARGET_TEXT.length * CYCLES_PER_LETTER) {
+        console.log(
+          "stop",
+          scrambled,
+          pos,
+          TARGET_TEXT.length * CYCLES_PER_LETTER
+        );
         stopScramble();
       }
     }, SHUFFLE_TIME);
@@ -54,7 +97,7 @@ const EncryptButton = () => {
   };
 
   return (
-    <motion.button
+    <motion.div
       whileHover={{
         scale: 1.025,
       }}
@@ -69,7 +112,7 @@ const EncryptButton = () => {
         {/* <FiLock /> */}
         <span>{text}</span>
       </div>
-      <motion.span
+      {/* <motion.span
         initial={{
           y: "100%",
         }}
@@ -83,8 +126,8 @@ const EncryptButton = () => {
           ease: "linear",
         }}
         className="duration-300 absolute inset-0 z-0 scale-125 bg-gradient-to-t from-indigo-400/0 from-40% via-indigo-400/100 to-indigo-400/0 to-60% opacity-0 transition-opacity group-hover:opacity-100"
-      />
-    </motion.button>
+      /> */}
+    </motion.div>
   );
 };
 
