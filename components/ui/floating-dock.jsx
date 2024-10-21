@@ -92,7 +92,7 @@ const FloatingDockDesktop = ({ items, className }) => {
   );
 };
 
-function IconContainer({ mouseX, title, icon, href }) {
+function IconContainer({ mouseX, title, icon, href, external }) {
   let ref = useRef(null);
 
   let distance = useTransform(mouseX, (val) => {
@@ -136,7 +136,10 @@ function IconContainer({ mouseX, title, icon, href }) {
   const [hovered, setHovered] = useState(false);
 
   return (
-    <Link href={href}>
+    <Link
+      href={href}
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+    >
       <motion.div
         ref={ref}
         style={{ width, height }}

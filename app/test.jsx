@@ -7,6 +7,9 @@ import {
   IconHome,
   IconNewSection,
   IconTerminal2,
+  IconMail,
+  IconBrandLeetcode,
+  IconBrandLinkedin,
 } from "@tabler/icons-react";
 import Image from "next/image";
 
@@ -27,44 +30,44 @@ export function FloatingDockDemo() {
       ),
       href: "#",
     },
+    // {
+    //   title: "Components",
+    //   icon: (
+    //     <IconNewSection className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+    //   ),
+    //   href: "#",
+    // },
     {
-      title: "Components",
+      title: "LinkedIn",
       icon: (
-        <IconNewSection className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        <IconBrandLinkedin className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
-      href: "#",
+      href: "https://www.linkedin.com/in/rpsuresh05/",
+      external: true,
     },
     {
-      title: "Aceternity UI",
+      title: "LeetCode Profile",
       icon: (
-        <IconTerminal2
-          onClick={() => alert("TEST")}
-          className="h-full w-full text-neutral-500 dark:text-neutral-300"
-        />
+        <IconBrandLeetcode className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
-      href: "#",
-    },
-    {
-      title: "Changelog",
-      icon: (
-        <IconExchange className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "#",
-    },
-
-    {
-      title: "Twitter",
-      icon: (
-        <IconBrandX className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "#",
+      href: "https://leetcode.com/u/rpsuresh05",
+      external: true,
     },
     {
       title: "GitHub",
       icon: (
         <IconBrandGithub className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
-      href: "#",
+      href: "https://github.com/rpsuresh05",
+      external: true,
+    },
+    {
+      title: "Mail",
+      icon: (
+        <IconMail className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "mailto:rpsuresh05@gmail.com",
+      external: true,
     },
   ];
   return (

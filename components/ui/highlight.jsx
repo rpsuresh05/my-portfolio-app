@@ -15,15 +15,15 @@ export const HeroHighlight = ({ children, className, containerClassName }) => {
     mouseY.set(clientY - top);
   }
   return (
-    <div
+    <span
       className={cn(
-        "relative h-[40rem] flex items-center bg-white dark:bg-black justify-center w-full group",
+        "relative bg-white dark:bg-black group",
         containerClassName
       )}
       onMouseMove={handleMouseMove}
     >
-      <div className="absolute inset-0 bg-dot-thick-neutral-300 dark:bg-dot-thick-neutral-800  pointer-events-none" />
-      <motion.div
+      <span className="absolute inset-0 bg-dot-thick-neutral-300 dark:bg-dot-thick-neutral-800  pointer-events-none" />
+      <motion.span
         className="pointer-events-none bg-dot-thick-indigo-500 dark:bg-dot-thick-indigo-500   absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100"
         style={{
           WebkitMaskImage: useMotionTemplate`
@@ -42,8 +42,8 @@ export const HeroHighlight = ({ children, className, containerClassName }) => {
           `,
         }}
       />
-      <div className={cn("relative z-20", className)}>{children}</div>
-    </div>
+      <span className={cn("relative z-20", className)}>{children}</span>
+    </span>
   );
 };
 
@@ -53,11 +53,11 @@ export const Highlight = ({ children, className }) => {
       initial={{
         backgroundSize: "0% 100%",
       }}
-      whileHover={{
+      animate={{
         backgroundSize: "100% 100%",
       }}
       transition={{
-        duration: 0.5,
+        duration: 3.5,
         ease: "linear",
         delay: 0.2,
       }}
